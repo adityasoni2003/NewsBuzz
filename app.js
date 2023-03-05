@@ -8,12 +8,20 @@ const header = document.querySelector(".header");
 
 
 const getArticles = async(query)=>{
-    let url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${API_KEY}`;
-    const res = await fetch(url);
+    try {
+        let url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${API_KEY}`;
+        const res = await fetch(url);
+        
+        const data = await res.json();
+        
+        return data
+        
+    } catch (error) {
+        console.log(error.message)
+        
+    }
     
-    const data = await res.json();
     
-    return data
 }
 
 const loadFeed = async(queryText)=>{
